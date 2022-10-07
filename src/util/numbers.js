@@ -1,9 +1,21 @@
+//@ts-check
+
 import { validateNumber, validateStringNotEmpty } from './validation.js';
 
+/**
+ *
+ * @param {string} value
+ * @returns {number}
+ */
 export function transformToNumber(value) {
     return +value;
 }
 
+/**
+ *
+ * @param {string[]} numberValues
+ * @returns {number[]}
+ */
 export function cleanNumbers(numberValues) {
     const numbers = [];
 
