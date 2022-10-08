@@ -36,16 +36,18 @@ afterEach(() => {
     console.log('afterEach()');
 });
 
+// you can even user .concurrent on tests suites
+
 describe('hooks', () => {
-    test('should have an email property', () => {
+    test.concurrent('should have an email property', () => {
         expect(user).toHaveProperty('email');
     });
 
-    test('should store the provided email value', () => {
+    test.concurrent('should store the provided email value', () => {
         expect(user.email).toBe(testEmail);
     });
 
-    test('should update the email', () => {
+    test.concurrent('should update the email', () => {
         const newTestEmail = 'test2@test.com';
         const user = new User(testEmail);
         user.updateEmail(newTestEmail);
@@ -53,15 +55,18 @@ describe('hooks', () => {
         expect(user.email).toBe(newTestEmail);
     });
 
-    test('should clear the email', () => {
+    test.concurrent('should clear the email', () => {
         user.clearEmail();
 
         expect(user.email).toBe('');
     });
 
-    test('should still have an email property after clearing the email', () => {
-        user.clearEmail();
+    test.concurrent(
+        'should still have an email property after clearing the email',
+        () => {
+            user.clearEmail();
 
-        expect(user).toHaveProperty('email');
-    });
+            expect(user).toHaveProperty('email');
+        }
+    );
 });
